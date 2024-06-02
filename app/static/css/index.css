@@ -1,0 +1,191 @@
+body{
+    font-family: 'Newsreader', serif;
+    background: white;
+}
+
+.general-container, .filtered-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 20px;
+    border: 2px solid #E6E6E6;
+    padding: 20px 0px;
+    gap: 15px;
+}
+.chart-container{
+    height: 400px;
+    width: 75%;
+}
+.pie-chart-container{
+    width: 17%;
+}
+.word-container {
+    height: 450px;
+} 
+.video-container {
+    height: 360px;
+    width: 100%;
+} 
+.comment-container {
+    height: 440px;
+
+}
+.comment-container, .filter-container {
+    width: 35%;
+} 
+
+/* Estilos para ocultar contenido de paginación */
+.video-content, .comment-content {
+    display: none;
+}
+
+.video-content.active, .comment-content.active {
+    display: block;
+}
+
+/* Estilos para botones de paginación */
+button.video-prev, button.video-next, button.comment-prev, button.comment-next, button.filtrar-submit {
+    margin: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button.video-prev:disabled, button.video-next:disabled, button.comment-prev:disabled, button.comment-next:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.titulo-dashboard {
+    display:none;
+}
+
+.video-content.active, .comment-content.active{
+    background: white;
+    border: 3px solid #6da000;
+    border-radius: 20px;
+
+}
+
+.video-content.active h4{
+    color: #4CAF50;
+    font-size: 20px;
+}
+
+.comment-page{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-content.active, .video-content.active{
+    padding: 0px 20px;
+}
+
+.chart-container h2 {
+    padding: 0px 20px;
+}
+
+.contenedor-videos-comentarios{
+    border-radius: 20px;
+    border: 2px solid #E6E6E6;
+    padding: 20px 0px;
+    margin-top: 15px;
+}
+
+.contenedor-videos-comentarios h2 {
+    padding: 0px 30px;
+    width: fit-content;
+}
+
+
+.filtered-container{
+    border: none;
+}
+
+.encabezado-videos-comentarios{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.encabezado-videos-comentarios form label{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.encabezado-videos-comentarios form{
+    padding: 0px 30px;
+}
+
+.filter-container, .comment-container, .pie-chart-container{
+    background: #f1fadd;
+    border-radius: 20px;
+    border: 3px solid #4CAF50;
+    padding: 0px 20px;
+}
+
+.comment-content.active{
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+#myChart, #myBarChart{
+    background: white;
+    border-radius: 20px;
+    border: 3px solid #4CAF50;
+    padding: 5px 20px;
+}
+
+.contenedor-myBarChart{
+    display: flex;
+    flex-direction: column;
+    width: 19%;
+}
+
+.total{
+    font-weight: 900;
+}
+
+h3{
+    font-size: 21px;
+    color: black;
+}
+
+.general-container{
+    padding-bottom: 0px;
+}
+
+.positive {
+    color: rgb(75, 192, 192);
+}
+.neutral {
+    color: rgb(255, 205, 86);
+}
+.negative {
+    color: rgb(255, 99, 132);
+}
+
+.pie-chart-container{
+    padding-bottom: 10px;
+    background: white;
+}
+
+.contenedor-videos-comentarios, .filtered-container, .general-container{
+    background: #eef1f1;
+    border: 3px solid #6398a0;
+}
+
+.filtered-container{
+    border: none;
+}
+
+.fecha-video-comentario{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

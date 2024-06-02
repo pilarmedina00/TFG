@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <h1 class="titulo-dashboard">Dashboard de sentimientos</h1>
+    <div class="general-container">
+        <!-- Gráfico general -->
+        <div class="chart-container">
+            <h2>Gráfico general de sentimientos</h2>
+            <canvas id="myChart" width="700" height="500"></canvas>
+        </div>
+        <!-- Gráfico de palabras más repetidas -->
+        <div class="contenedor-myBarChart">
+            <h2>Top 5 palabras más repetidas</h2>
+            <div class="word-container">
+                <canvas id="myBarChart" width="500" height="500"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="contenedor-videos-comentarios">
+        <div class="encabezado-videos-comentarios">
+            <h2>Vídeos y comentarios filtrados por fecha</h2>
+            <form method="GET" action="/">
+                <label for="start_date">Fecha de inicio:</label>
+                <input type="date" id="start_date" name="start_date" required>
+                
+                <label for="end_date">&emsp;&emsp;Fecha de fin:</label>
+                <input type="date" id="end_date" name="end_date" required>
+        
+                <button class="filtrar-submit" type="submit">Filtrar</button>
+            </form>
+        </div>
+        <div class="filtered-container">
+            <!-- Filtro de fechas y resultados -->
+            <div class="filter-container">
+                <div class="video-container">
+                    <h3>Vídeos</h3>
+                    <div class="video-pagination">
+                        <button class="video-prev">Anterior</button> <button class="video-next">Siguiente</button> <label for="total_videos">Total: <span class="total">{{ videos|length }}</span></label>
+                        <div class="video-page">
+                            {% for video in videos %}
+                                <div class="video-content">
+                                    <h4>{{ video.title }}</h4>
+                                    <p>{{ video.description}}</p>
+                                    <p>Palabra más repetida: <strong>{{ video.most_common_word.word }}</strong> (<strong>{{ video.most_common_word.frequency }}</strong> veces)</p>
+                                    <div class="fecha-video-comentario">
+                                        <p><i class="fa-solid fa-heart"></i> {{ video.likes }}</p>
+                                        <p>{{ video.date.strftime('%Y-%m-%d') }}</p>
+                                    </div>
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="comment-container">
+                <h3>Comentarios</h3>
+                <div class="comment-pagination">
+                    <button class="comment-prev">Anterior</button> <button class="comment-next">Siguiente</button><label for="total_comments">Total: <span class="total">{{ comments|length }}</span></label>
+                    <div class="comment-page">
+                        {% for comment in comments %}
+                            <div class="comment-content">
+                                <p><strong>{{ comment.username }}:</strong> {{ comment.comment}}</p>
+                                <p>Sentimiento: <strong class="{{ comment.sentiment|lower }}">{{ comment.sentiment }}</strong></p>
+                                <div class="fecha-video-comentario">
+                                    <p><i class="fa-solid fa-heart"></i> {{ comment.likes }}</p>
+                                    <p>{{ comment.date.strftime('%Y-%m-%d') }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+    
+            <!-- Gráfico circular con sentimientos filtrados por fecha -->
+            <div class="pie-chart-container">
+                <h3>Gráfico de sentimientos filtrados</h3>
+                <canvas id="myPieChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sentimentsData = {{ sentiments|tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pagination.js') }}"></script>
+</body>
+</html>
