@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto utiliza técnicas de procesamiento del lenguaje natural para analizar los sentimientos expresados en comentarios de videos de YouTube. Se implementa con Flask, MongoDB y varios paquetes de Python para el análisis de datos y modelado de lenguaje.
+Este proyecto utiliza técnicas de PLN para analizar los sentimientos expresados en comentarios de videos de YouTube. Se implementa con Flask, MongoDB y varios paquetes de Python para el análisis de datos y modelado de lenguaje.
 
 ## Requisitos
 
